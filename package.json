@@ -1,0 +1,23 @@
+{
+  "name": "09-team_profile_generator",
+  "version": "1.0.0",
+  "description": "Homework09 - Team Profile Generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandra-marr/09-Team_Profile_Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sandra-marr/09-Team_Profile_Generator/issues"
+  },
+  "homepage": "https://github.com/sandra-marr/09-Team_Profile_Generator#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "inquirer": "^8.1.0"
+  }
+}
