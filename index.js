@@ -50,8 +50,13 @@ function addManager () {
             },
             {
               type: "input",
-              name: "office",
-              message: "Please enter the Manager's office number."
+              name: "officeNumber",
+              message: "Please enter the Manager's office phone number.",
+              default: () => {},
+              validate: function (str) {
+                var regex = /^(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
+                return regex.test(str);
+              }
             }, 
           ])
           .then( ({employeeName, id, email, officeNumber}) =>{
@@ -70,21 +75,19 @@ function menu(){
   inquirer
     .prompt ([
       {
-        type: "list",
+        type: "confirm",
         name: "continue",
         message: "Would you like to add another employee?",
-        choices: ["yes", "no"]
       }
     ])
     .then ((val) => {
-      if(val === "yes") {
+      if (val === true) {
         addEmployee();
       }
-      else if (val === "no") {
+      else {
         generateHTML();
       };
     })
-
 };
 
 function addEmployee () {
@@ -97,16 +100,16 @@ function addEmployee () {
         choices: ["Engineer", "Intern",]
       }, 
     ])
-    .then ( (role) => {
+    .then ( ({role}) => {
+      console.log(role);
       if (role === "Engineer"){
-        addEngineer();
+        addEngineer(role)
       }
-      else if (role === "Intern"){
-       addIntern();
+      if (role === "Intern"){
+       addIntern(role);
       }
     })
 };
-
 
 function addEngineer () {
     inquirer
@@ -156,17 +159,17 @@ function addIntern () {
       {
       type: "input",
       name: "employeeName",
-      message: "Please enter the next engineer's name.",
+      message: "Please enter the intern's name.",
       },
       {
         type: "input",
         name: "id",
-        message: "Please enter the engineer's ID.",
+        message: "Please enter the intern's ID.",
       }, 
       {
         type: "input",
         name: "email",
-        message: "Please enter the engineer's email.",
+        message: "Please enter the intern's email.",
         default: () => {},
         validate: function (email) {
             valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
