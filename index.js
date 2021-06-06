@@ -84,9 +84,14 @@ function menu(){
         addEmployee();
       }
       else {
-        createHTMLCard(teamMembers);
-      };
-    })
+        console.log("Thank you for your inputs. The HTML has being generated.")
+          createHTMLCard(teamMembers);
+          console.log("cards created");
+    }})
+    // .then(() => {
+    //   generateHTML();
+    //   console.log("final html created");
+    // })
 };
 
 function addEmployee () {
@@ -219,12 +224,16 @@ function startHTML(teamName) {
 
 
 };
-   
-async function createHTMLCard (teamMembers) {
-  console.log(teamMembers);
 
-  try {
-    const response1 = await teamMembers.forEach((member) => {
+
+   
+function createHTMLCard (teamMembers) {
+  var totalMembers = teamMembers.length;
+  var i = 0;
+  console.log("totalMembers = " + totalMembers);
+  console.log("i = " + i);
+
+  teamMembers.forEach((member) => {
     const name = member.getName();
     const id = member.getId();
     const role = member.getRole();
@@ -297,40 +306,40 @@ async function createHTMLCard (teamMembers) {
                 </ul>
             </div>
         </div>
-      `
+      `;
     }
 
     fs.appendFile("./team.html", part2, function (err) {
       if (err) {
           return reject(err);
       };
-      
+
+      i++;
+      console.log(i);
+
+      if (i === totalMembers) {
+        console.log("final html created")
+        generateHTML();
+      }
     });
-
-  })
-
-  const response2 = await generateHTML();
-  } 
-  catch (err) {
-  console.log("Error: " + err);
-  }
-};
-
+  }); 
+}
 
 function generateHTML () {
-  const part3 = `
-  </div>
+ 
+    const part3 = `
+      </div>
+  
+      <script src="./assets/js/uikit.min.js"></script>
+      <script src="./assets/js/uikit-icons.min.js"></script>
+      <script src="https://kit.fontawesome.com/aaf43dd7fc.js" crossorigin="anonymous"></script>    
+    </body>
+    </html>`
+  
+    fs.appendFile("./team.html", part3, function (err) {
+      if (err) {
+          return reject(err);
+      };
 
-  <script src="./assets/js/uikit.min.js"></script>
-  <script src="./assets/js/uikit-icons.min.js"></script>
-  <script src="https://kit.fontawesome.com/aaf43dd7fc.js" crossorigin="anonymous"></script>    
-</body>
-</html>`
-
-fs.appendFile("./team.html", part3, function (err) {
-  if (err) {
-      return reject(err);
-  };
-});
-
-}
+    })
+};
