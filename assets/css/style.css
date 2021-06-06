@@ -4,3 +4,11 @@ h1 {
     padding-top: 1em;
     padding-bottom: 1em;
 }
+
+.uk-container {
+    margin-left: -15px !important;
+}
+
+.uk-card-header, .uk-card-body {
+    border: thin grey solid;
+}

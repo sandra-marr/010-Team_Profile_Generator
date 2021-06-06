@@ -54,12 +54,8 @@ function addManager () {
             {
               type: "input",
               name: "officeNumber",
-              message: "Please enter the Manager's office phone number.",
-              default: () => {},
-              validate: function (str) {
-                var regex = /^(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
-                return regex.test(str);
-              }
+              message: "Please enter the Manager's office number.",
+        
             }, 
           ])
           .then( ({teamName, employeeName, id, email, officeNumber}) =>{
@@ -211,9 +207,9 @@ function startHTML(teamName) {
       <script src="./assets/js/uikit.min.js"></script>
       <script src="./assets/js/uikit-icons.min.js"></script>
   </head>
-  <body>
+  <body class="uk-width-1-1">
       <h1 class="uk-text-center">${teamName} Members</h1>
-      <div class="uk-container uk-flex uk-width-1-1 uk-flex-between">`;
+      <div class="uk-container uk-width-1-1 uk-child-width-1-3@m uk-child-width-1-2@s " uk-grid>`;
 
   fs.writeFile("./team.html", part1, function(err) {
     if (err) {
@@ -228,8 +224,7 @@ async function createHTMLCard (teamMembers) {
   console.log(teamMembers);
 
   try {
-    const response1 = await
-    teamMembers.forEach((member) => {
+    const response1 = await teamMembers.forEach((member) => {
     const name = member.getName();
     const id = member.getId();
     const role = member.getRole();
@@ -239,69 +234,69 @@ async function createHTMLCard (teamMembers) {
     if (role === "Manager") {
       const officeNumber = member.getOfficeNumber();
       part2 = `
-      <div class="uk-card uk-card-default uk-width-1-4">
-        <div class="uk-card-header uk-background-primary">
-            <div class="uk-grid-small" uk-grid>
-                <div class="">
-                    <h3 class="uk-card-title uk-margin-remove-bottom">${name}</h3>
-                    <p class="uk-text-meta uk-margin-remove-top"><i class="fas fa-mug-hot"></i>${role}</p>
+      <div class="uk-card uk-card-default">
+            <div class="uk-card-header uk-background-primary">
+                <div class="uk-grid-small" uk-grid>
+                    <div class="uk-text-center">
+                        <h3 class="uk-card-title uk-margin-remove-bottom">${name}</h3>
+                        <h4 class="uk-text-small uk-margin-remove-top"><i class="fas fa-mug-hot"></i> ${role}</h4>
+                    </div>
                 </div>
             </div>
+            <div class="uk-card-body uk-padding-small">
+                <ul class="uk-list uk-list-divider"> 
+                    <li>ID: ${id}</li>
+                    <li>Email: <a href = "mailto:${email}">${email}</a></li>
+                    <li>Office Number: ${officeNumber}</li>
+                </ul>
+            </div>
         </div>
-        <div class="uk-card-body uk-padding-small">
-            <ul class="uk-list uk-list-divider"> 
-                <li>ID: ${id}</li>
-                <li>Email:<a href = "mailto:${email}">${email}</a></li>
-                <li>School: ${officeNumber}</li>
-            </ul>
-        </div>
-      </div>
       `;
     } 
     
     else if (role === "Engineer") {
       const gitHub = member.getGitHub();
       part2 = `
-      <div class="uk-card uk-card-default uk-width-1-4">
-        <div class="uk-card-header uk-background-primary">
-            <div class="uk-grid-small" uk-grid>
-                <div class="">
-                    <h3 class="uk-card-title uk-margin-remove-bottom">${name}</h3>
-                    <p class="uk-text-meta uk-margin-remove-top"><i class="fas fa-glasses"></i>${role}</p>
+      <div class="uk-card uk-card-default">
+            <div class="uk-card-header uk-background-primary">
+                <div class="uk-grid-small" uk-grid>
+                    <div class="uk-text-center">
+                        <h3 class="uk-card-title uk-margin-remove-bottom">${name}</h3>
+                        <h4 class="uk-margin-remove-top uk-text-small"><i class="fas fa-glasses"></i> ${role}</h4>
+                    </div>
                 </div>
             </div>
+            <div class="uk-card-body uk-padding-small">
+                <ul class="uk-list uk-list-divider">
+                    <li>ID: ${id}</li>
+                    <li>Email: <a href = "mailto:${email}">${email}</a></li>
+                    <li>GitHub: <a href="https://github.com/${gitHub}" target="_blank">${gitHub}</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="uk-card-body uk-padding-small">
-            <ul class="uk-list uk-list-divider">
-                <li>ID: ${id}</li>
-                <li>Email:<a href = "mailto:${email}">${email}</a></li>
-                <li>GitHub: <a href="https://github.com/${gitHub}" target="_blank">${gitHub}</a></li>
-            </ul>
-        </div>
-      </div>
       `;
     } 
     
     else if (role === "Intern") { 
       const school = member.getSchool();
       part2 = `
-      <div class="uk-card uk-card-default uk-width-1-4">
-        <div class="uk-card-header uk-background-primary">
-            <div class="uk-grid-small" uk-grid>
-                <div class="">
-                    <h3 class="uk-card-title uk-margin-remove-bottom">${name}</h3>
-                    <p class="uk-text-meta uk-margin-remove-top"><i class="fas fa-user-graduate"></i>${role}</p>
+      <div class="uk-card uk-card-default">
+            <div class="uk-card-header uk-background-primary">
+                <div class="uk-grid-small" uk-grid>
+                    <div class="uk-text-center">
+                        <h3 class="uk-card-title uk-margin-remove-bottom">${name}</h3>
+                        <h4 class="uk-text-small uk-margin-remove-top"><i class="fas fa-user-graduate"></i> ${role}</h4>
+                    </div>
                 </div>
             </div>
+            <div class="uk-card-body uk-padding-small">
+                <ul class="uk-list uk-list-divider">
+                    <li>ID: ${id}</li>
+                    <li>Email: <a href = "mailto:${email}">${email}</a></li>
+                    <li>School: ${school}</li>
+                </ul>
+            </div>
         </div>
-        <div class="uk-card-body uk-padding-small">
-            <ul class="uk-list uk-list-divider">
-                <li>ID: ${id}</li>
-                <li>Email:<a href = "mailto:${email}">${email}</a></li>
-                <li>School: ${school}</li>
-            </ul>
-        </div>
-      </div>
       `
     }
 
@@ -315,9 +310,10 @@ async function createHTMLCard (teamMembers) {
   })
 
   const response2 = await generateHTML();
-} catch (err) {
+  } 
+  catch (err) {
   console.log("Error: " + err);
-}
+  }
 };
 
 
