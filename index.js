@@ -88,10 +88,6 @@ function menu(){
           createHTMLCard(teamMembers);
           console.log("cards created");
     }})
-    // .then(() => {
-    //   generateHTML();
-    //   console.log("final html created");
-    // })
 };
 
 function addEmployee () {
@@ -230,8 +226,8 @@ function startHTML(teamName) {
 function createHTMLCard (teamMembers) {
   var totalMembers = teamMembers.length;
   var i = 0;
-  console.log("totalMembers = " + totalMembers);
-  console.log("i = " + i);
+  // console.log("totalMembers = " + totalMembers);
+  // console.log("i = " + i);
 
   teamMembers.forEach((member) => {
     const name = member.getName();
@@ -315,7 +311,7 @@ function createHTMLCard (teamMembers) {
       };
 
       i++;
-      console.log(i);
+      // console.log(i);
 
       if (i === totalMembers) {
         console.log("final html created")
