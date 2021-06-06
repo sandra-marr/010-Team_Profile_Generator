@@ -1,38 +1,73 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Title</title>
+        <title>`${response.teamName}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/uikit.min.css" />
-        <script src="js/uikit.min.js"></script>
-        <script src="js/uikit-icons.min.js"></script>
+        <link rel="stylesheet" href="./assets/css/uikit.min.css" />
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <script src="./assets/js/uikit.min.js"></script>
+        <script src="./assets/js/uikit-icons.min.js"></script>
     </head>
     <body>
-        <h1>`${response.teamName} Members`</h1>
-        <div class="uk-container">
-            <div class="uk-card uk-card-default uk-width-1-2@m">
-                <div class="uk-card-header">
-                    <div class="uk-grid-small uk-flex-middle" uk-grid>
-                        <div class="uk-width-auto">
-                            <img class="uk-border-circle" width="40" height="40" src="images/avatar.jpg">
-                        </div>
-                        <div class="uk-width-expand">
-                            <h3 class="uk-card-title uk-margin-remove-bottom">Title</h3>
-                            <p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00">April 01, 2016</time></p>
+        <h1 class="uk-text-center">`${response.teamName}` Members</h1>
+        <div class="uk-container uk-flex uk-width-1-1 uk-flex-between">
+            <div class="uk-card uk-card-default uk-width-1-4">
+                <div class="uk-card-header uk-background-primary">
+                    <div class="uk-grid-small" uk-grid>
+                        <div class="">
+                            <h3 class="uk-card-title uk-margin-remove-bottom">`${manager.name}`</h3>
+                            <p class="uk-text-meta uk-margin-remove-top"><i class="fas fa-mug-hot"></i>`${manager.role}`</p>
                         </div>
                     </div>
                 </div>
-                <div class="uk-card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                <div class="uk-card-body uk-padding-small">
+                    <ul class="uk-list uk-list-divider"> 
+                        <li>ID: `${manager.id}`</li>
+                        <li>Email: <address>`${manager.email}`</address></li>
+                        <li>School: `${manager.officeNumber}`</li>
+                    </ul>
                 </div>
-                <div class="uk-card-footer">
-                    <a href="#" class="uk-button uk-button-text">Read more</a>
+            </div>
+<!-- end of first html section -->
+            <div class="uk-card uk-card-default uk-width-1-4">
+                <div class="uk-card-header uk-background-primary">
+                    <div class="uk-grid-small" uk-grid>
+                        <div class="">
+                            <h3 class="uk-card-title uk-margin-remove-bottom">`${engineer.name}`</h3>
+                            <p class="uk-text-meta uk-margin-remove-top"><i class="fas fa-glasses"></i>`${engineer.role}`</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card-body uk-padding-small">
+                    <ul class="uk-list uk-list-divider">
+                        <li>ID: `${engineer.id}`</li>
+                        <li>Email: <address>`${engineer.email}`</address></li>
+                        <li>School: `${engineer.gitHub}`</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="uk-card uk-card-default uk-width-1-4">
+                <div class="uk-card-header uk-background-primary">
+                    <div class="uk-grid-small" uk-grid>
+                        <div class="">
+                            <h3 class="uk-card-title uk-margin-remove-bottom">`${intern.name}`</h3>
+                            <p class="uk-text-meta uk-margin-remove-top"><i class="fas fa-user-graduate"></i>`${intern.role}`</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card-body uk-padding-small">
+                    <ul class="uk-list uk-list-divider">
+                        <li>ID: `${intern.id}`</li>
+                        <li>Email:<address>`${intern.email}`</address></li>
+                        <li>School: `${intern.school}`</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <script src="js/uikit.min.js"></script>
-        <script src="js/uikit-icons.min.js"></script>    
+        <script src="./assets/js/uikit.min.js"></script>
+        <script src="./assets/js/uikit-icons.min.js"></script>
+        <script src="https://kit.fontawesome.com/aaf43dd7fc.js" crossorigin="anonymous"></script>    
     </body>
 </html>
